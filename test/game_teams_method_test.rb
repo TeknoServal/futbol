@@ -109,5 +109,14 @@ class GameTeamsMethodsTest < Minitest::Test
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
     assert_equal "FC Cincinnati", game_teams_methods.most_tackles("20132014")
+    assert_equal "Seattle Sounders FC", game_teams_methods.most_tackles("20142015")
+  end
+
+  def test_it_can_get_team_with_the_fewest_tackles
+    game_teams = './data/game_teams.csv'
+    game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
+
+    assert_equal "Atlanta United", game_teams_methods.fewest_tackles("20132014")
+    assert_equal "Orlando City SC", game_teams_methods.fewest_tackles("20142015")
   end
 end
