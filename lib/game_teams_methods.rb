@@ -2,7 +2,7 @@ require 'CSV'
 require_relative './game_teams'
 
 class GameTeamsMethods
-attr_reader :game_teams, :all_game_teams
+  attr_reader :game_teams, :all_game_teams
   def initialize(game_teams, stat_tracker)
     @game_teams = game_teams
     @all_game_teams = create_array(@game_teams)
@@ -36,30 +36,37 @@ attr_reader :game_teams, :all_game_teams
     @stat_tracker.find_by_team_id(all_season_tackles)
   end
 
-def get_season_rows(season)
-  each_season_row = Hash.new
-  @stat_tracker.games_by_season[season].each do |game|
-    @all_game_teams.each do |row|
-      if row.game_id == game.game_id
-        each_season_row[game.game_id] = row
+  def fewest_tackles(season)
+    all_season_tackles = assign_tackles_by_season(season).min_by do |key, value|
+      value
+    end.first
+    @stat_tracker.find_by_team_id(all_season_tackles)
+  end
+
+  def get_season_rows(season)
+    each_season_row = []
+    @stat_tracker.games_by_season[season].each do |game|
+      @all_game_teams.each do |row|
+        if row.game_id == game.game_id
+          each_season_row << row
+        end
       end
     end
+    each_season_row
   end
-  each_season_row
-end
 
-def assign_tackles_by_season(season)
-  team_id_and_tackles = Hash.new
-  get_season_rows(season).each do |key, row|
-    if team_id_and_tackles.has_key?(row.team_id)
-      team_id_and_tackles[row.team_id] += row.tackles.to_i
-    else
-      team_id_and_tackles[row.team_id] = row.tackles.to_i
+  def assign_tackles_by_season(season)
+    team_id_and_tackles = Hash.new
+    get_season_rows(season).each do |game|
+      if team_id_and_tackles.has_key?(game.team_id)
+        team_id_and_tackles[game.team_id] += game.tackles.to_i
+      else
+        team_id_and_tackles[game.team_id] = game.tackles.to_i
+      end
     end
+    team_id_and_tackles
   end
-  team_id_and_tackles
-end
-#######################################
+
   def assign_goals_by_teams
     team_goals = Hash.new
     @all_game_teams.each do |gameteam|
@@ -138,7 +145,7 @@ end
 
   def find_all_games(home_away)
     @all_game_teams.find_all do |gameteam|
-        gameteam.hoa == home_away
+      gameteam.hoa == home_away
     end
   end
 end

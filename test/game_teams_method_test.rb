@@ -96,14 +96,6 @@ class GameTeamsMethodsTest < Minitest::Test
     assert_equal "7", game_teams_methods.lowest_scoring_team("home")
   end
 
-  def test_it_can_return_a_hash_of_team_id_and_total_tackles
-    game_teams = './data/game_teams.csv'
-    game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
-
-    assert_equal ["19",984],
-    game_teams_methods.assign_tackles_by_season("20132014").first
-  end
-
   def test_it_can_get_team_with_most_tackles
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
@@ -118,5 +110,13 @@ class GameTeamsMethodsTest < Minitest::Test
 
     assert_equal "Atlanta United", game_teams_methods.fewest_tackles("20132014")
     assert_equal "Orlando City SC", game_teams_methods.fewest_tackles("20142015")
+  end
+
+  def test_it_can_return_a_hash_of_team_id_and_total_tackles
+    game_teams = './data/game_teams.csv'
+    game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
+
+    assert_equal ["16",1836],
+    game_teams_methods.assign_tackles_by_season("20132014").first
   end
 end
