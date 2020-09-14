@@ -7,9 +7,10 @@ require_relative './game'
 class GameMethods
   attr_reader :file_loc, :games, :home_goals, :away_goals
 
-  def initialize(file_loc)
+  def initialize(file_loc, stat_tracker)
     @file_loc = file_loc
     @games = create_games
+    @stat_tracker = stat_tracker
   end
 
   def create_games
@@ -52,6 +53,13 @@ class GameMethods
   def games_by_season
     @games.group_by do |game|
       game.season
+    end
+  end
+
+  def games_by_specific_season(season)
+    games_by_season.map do |key, value|
+      require "pry"; binding.pry
+      value.game_id
     end
   end
 

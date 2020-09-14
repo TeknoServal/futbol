@@ -3,9 +3,10 @@ require 'CSV'
 class TeamMethods
   attr_reader :teams_array, :teams
 
-  def initialize(teams)
+  def initialize(teams, stat_tracker)
     @teams = teams
     @teams_array = create_table(@teams)
+    @stat_tracker = stat_tracker
   end
 
   def create_table(file)

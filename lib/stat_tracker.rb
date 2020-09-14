@@ -13,9 +13,9 @@ class StatTracker
     @games_path = locations[:games]
     @teams_path = locations[:teams]
     @game_teams_path = locations[:game_teams]
-    @game_methods = GameMethods.new(@games_path)
-    @team_methods = TeamMethods.new(@teams_path)
-    @game_teams_methods = GameTeamsMethods.new(@game_teams_path)
+    @game_methods = GameMethods.new(@games_path, self)
+    @team_methods = TeamMethods.new(@teams_path, self)
+    @game_teams_methods = GameTeamsMethods.new(@game_teams_path, self)
   end
 
   def self.from_csv(locations)
@@ -53,7 +53,7 @@ class StatTracker
   def average_goals_by_season
     @average_goals_by_season ||= @game_methods.average_goals_by_season
   end
-    
+
   def best_offense
     best_team = @game_teams_methods.best_offense_team
     @team_methods.find_by_id(best_team)
@@ -82,5 +82,21 @@ class StatTracker
   def lowest_scoring_home_team
     lowest_visitor = @game_teams_methods.lowest_scoring_team("home")
     @team_methods.find_by_id(lowest_visitor)
+  end
+
+  def games_by_season(season)
+    @game_methods.games_by_specific_season(season)
+  end
+
+  def games_by_season
+    @game_methods.games_by_season
+  end
+
+  def most_tackles
+    @team_with_most_tackles ||= @game_teams_methods.most_tackles(season)
+  end
+
+  def find_by_team_id(team_id)
+    @team_methods.find_by_id(team_id)
   end
 end
