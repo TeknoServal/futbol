@@ -104,6 +104,13 @@ class GameTeamsMethodsTest < Minitest::Test
     game_teams_methods.assign_tackles_by_season("20132014").first
   end
 
+  def test_it_can_get_team_with_most_tackles
+    game_teams = './data/game_teams.csv'
+    game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
+
+    assert_equal "FC Cincinnati", game_teams_methods.most_tackles("20132014")
+  end
+
   # def test_team_with_least_tackles
   #   game_teams = './data/game_teams.csv'
   #   game_teams_methods = GameTeamsMethods.new(game_teams)
