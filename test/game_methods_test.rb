@@ -47,7 +47,7 @@ class GameMethodsTest < Minitest::Test
   def test_lowest_total_score
     file_loc = './data/games.csv'
 
-    game_methods = GameMethods.new(file_loc)
+    game_methods = GameMethods.new(file_loc, @stat_tracker)
 
     assert_equal 0, game_methods.lowest_total_score
   end
