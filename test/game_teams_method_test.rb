@@ -95,7 +95,7 @@ class GameTeamsMethodsTest < Minitest::Test
 
     assert_equal "7", game_teams_methods.lowest_scoring_team("home")
   end
-#################################################################
+
   def test_it_can_return_a_hash_of_team_id_and_total_tackles
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
@@ -110,13 +110,4 @@ class GameTeamsMethodsTest < Minitest::Test
 
     assert_equal "FC Cincinnati", game_teams_methods.most_tackles("20132014")
   end
-
-  # def test_team_with_least_tackles
-  #   game_teams = './data/game_teams.csv'
-  #   game_teams_methods = GameTeamsMethods.new(game_teams)
-  #
-  #   assert_equal "54", game_teams_methods.fewest_tackles()
-  # end
-
-  #################################################################
 end

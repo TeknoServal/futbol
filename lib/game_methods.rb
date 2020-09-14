@@ -56,13 +56,6 @@ class GameMethods
     end
   end
 
-  def games_by_specific_season(season)
-    games_by_season.map do |key, value|
-      require "pry"; binding.pry
-      value.game_id
-    end
-  end
-
   def count_of_games_by_season
     output_hash = {}
     season_games = games_by_season

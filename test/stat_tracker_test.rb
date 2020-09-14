@@ -64,7 +64,7 @@ class StatTrackerTest < Minitest::Test
     assert_equal 'Reign FC', @stat_tracker.highest_scoring_home_team
   end
 
-  def test_can_get_games_by_season
-    assert_equal [], @stat_tracker.games_by_season("20132014")
+  def test_most_tackles
+    assert_equal "FC Cincinnati", @stat_tracker.most_tackles("20132014")
   end
 end

@@ -28,20 +28,14 @@ attr_reader :game_teams, :all_game_teams
       value
     end.first
   end
-######################################
+
   def most_tackles(season)
     all_season_tackles = assign_tackles_by_season(season).max_by do |key, value|
       value
     end.first
     @stat_tracker.find_by_team_id(all_season_tackles)
   end
-#######################################
-  # def fewest_tackles
-  #   fewest_tackles_team = assign_total_tackles_by_team.min_by do |key, value|
-  #     value
-  #   end.first
-  # end
-#######################################
+
 def get_season_rows(season)
   each_season_row = Hash.new
   @stat_tracker.games_by_season[season].each do |game|
@@ -53,7 +47,6 @@ def get_season_rows(season)
   end
   each_season_row
 end
-
 
 def assign_tackles_by_season(season)
   team_id_and_tackles = Hash.new

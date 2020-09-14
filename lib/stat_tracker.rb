@@ -84,15 +84,11 @@ class StatTracker
     @team_methods.find_by_id(lowest_visitor)
   end
 
-  def games_by_season(season)
-    @game_methods.games_by_specific_season(season)
-  end
-
   def games_by_season
     @game_methods.games_by_season
   end
 
-  def most_tackles
+  def most_tackles(season)
     @team_with_most_tackles ||= @game_teams_methods.most_tackles(season)
   end
 
