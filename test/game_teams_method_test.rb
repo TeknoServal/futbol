@@ -23,8 +23,6 @@ class GameTeamsMethodsTest < Minitest::Test
 
   def test_it_exists
     assert_instance_of GameTeamsMethods, @game_teams_methods
-
-    assert_equal './data/game_teams.csv', @game_teams_methods.game_teams
   end
 
   def test_it_can_generate_array_of_game_teams_objects
@@ -95,5 +93,13 @@ class GameTeamsMethodsTest < Minitest::Test
   def test_it_can_get_least_accurate_team
     assert_equal "New York City FC", @game_teams_methods.least_accurate_team("20132014")
     assert_equal "Columbus Crew SC", @game_teams_methods.least_accurate_team("20142015")
+  end
+
+  def test_it_can_get_worst_coach
+    game_teams = './data/game_teams.csv'
+    game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
+
+    assert_equal "Peter Laviolette", game_teams_methods.worst_coach("20132014")
+    assert_equal "Ted Nolan", game_teams_methods.worst_coach("20142015")
   end
 end

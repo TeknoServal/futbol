@@ -22,6 +22,10 @@ class StatTracker
     StatTracker.new(locations)
   end
 
+  def count_of_teams
+    @team_methods.count_of_teams
+  end
+
   def highest_total_score
     @game_methods.highest_total_score
   end
@@ -64,7 +68,7 @@ class StatTracker
     @team_methods.find_by_id(worst_team)
   end
 
-  def highest_scoring_visitor_team
+  def highest_scoring_visitor
     highest_visitor = @game_teams_methods.highest_scoring_team("away")
     @team_methods.find_by_id(highest_visitor)
   end
@@ -74,7 +78,7 @@ class StatTracker
     @team_methods.find_by_id(highest_visitor)
   end
 
-  def lowest_scoring_visitor_team
+  def lowest_scoring_visitor
     lowest_visitor = @game_teams_methods.lowest_scoring_team("away")
     @team_methods.find_by_id(lowest_visitor)
   end
@@ -102,6 +106,10 @@ class StatTracker
 
   def winningest_coach(season)
     @game_teams_methods.winningest_coach(season)
+  end
+
+  def worst_coach(season)
+    @game_teams_methods.worst_coach(season)
   end
 
   def most_accurate_team(season)
