@@ -130,4 +130,12 @@ class GameTeamsMethodsTest < Minitest::Test
     assert_equal "Claude Julien", game_teams_methods.winningest_coach("20132014")
     assert_equal "Alain Vigneault", game_teams_methods.winningest_coach("20142015")
   end
+
+  def test_it_can_get_worst_coach
+    game_teams = './data/game_teams.csv'
+    game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
+
+    assert_equal "Peter Laviolette", game_teams_methods.winningest_coach("20132014")
+    assert_equal "Craig MacTavish", game_teams_methods.winningest_coach("20142015")
+  end
 end
