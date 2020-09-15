@@ -81,4 +81,19 @@ class GameTeamsMethodsTest < Minitest::Test
     assert_equal ["16",1836],
     @game_teams_methods.assign_tackles_by_season("20132014").first
   end
+
+  def test_it_can_get_winningest_coach
+    assert_equal "Claude Julien", @game_teams_methods.winningest_coach("20132014")
+    assert_equal "Alain Vigneault", @game_teams_methods.winningest_coach("20142015")
+  end
+
+  def test_it_can_get_most_accurate_team
+    assert_equal "Real Salt Lake", @game_teams_methods.most_accurate_team("20132014")
+    assert_equal "Toronto FC", @game_teams_methods.most_accurate_team("20142015")
+  end
+
+  def test_it_can_get_least_accurate_team
+    assert_equal "New York City FC", @game_teams_methods.least_accurate_team("20132014")
+    assert_equal "Columbus Crew SC", @game_teams_methods.least_accurate_team("20142015")
+  end
 end

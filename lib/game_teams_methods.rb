@@ -55,6 +55,62 @@ class GameTeamsMethods
     each_season_row
   end
 
+  def most_accurate_team(season)
+    shot_ratio = {}
+    team_id_games(season).each do |key, games|
+      shot_ratio[key] = ((goals_sum(games) / shots_sum(games)) * 100).round(2)
+    end
+    best_ratio = shot_ratio.max_by do |team_id, ratio|
+      ratio
+    end.first
+    @stat_tracker.find_by_team_id(best_ratio)
+  end
+
+  def least_accurate_team(season)
+    shot_ratio = {}
+    team_id_games(season).each do |key, games|
+      shot_ratio[key] = ((goals_sum(games) / shots_sum(games)) * 100).round(2)
+    end
+    worst_ratio = shot_ratio.min_by do |team_id, ratio|
+      ratio
+    end.first
+    @stat_tracker.find_by_team_id(worst_ratio)
+  end
+
+  def team_id_games(season)
+    get_season_rows(season).group_by do |game|
+      game.team_id
+    end
+  end
+
+  def goals_sum(games)
+    games.sum{|game| game.goals.to_f}
+  end
+
+  def shots_sum(games)
+    games.sum{|game| game.shots.to_f}
+  end
+
+  def winningest_coach(season)
+    coach_win_percentage = {}
+    games_by_coach(season).each do |key, games|
+      coach_win_percentage[key] = (find_wins_by_coaches(games) * 100).round(2)
+    end
+    coach_win_percentage.max_by do |coach, percentage|
+      percentage
+    end.first
+  end
+
+  def games_by_coach(season)
+    get_season_rows(season).group_by do |game|
+      game.head_coach
+    end
+  end
+
+  def find_wins_by_coaches(games)
+    (games.find_all{ |game| game.result == "WIN"}.length / (games.size).to_f)
+  end
+
   def assign_tackles_by_season(season)
     team_id_and_tackles = Hash.new
     get_season_rows(season).each do |game|
