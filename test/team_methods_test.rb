@@ -37,13 +37,13 @@ class TeamMethodsTest < Minitest::Test
     team_methods = TeamMethods.new(teams)
 
     expected = {
-      team_id: 1,
-      franchise_id: 23,
+      team_id: "1",
+      franchise_id: "23",
       team_name: "Atlanta United",
       abbreviation: "ATL",
       link: "/api/v1/teams/1"
     }
 
-    assert_equal expected, team_methods.team_info
+    assert_equal expected, team_methods.team_info("1")
   end
 end
