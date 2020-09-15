@@ -36,6 +36,13 @@ class GameTeamsMethods
     @stat_tracker.find_by_team_id(all_season_tackles)
   end
 
+  def fewest_tackles(season)
+    all_season_tackles = assign_tackles_by_season(season).min_by do |key, value|
+      value
+    end.first
+    @stat_tracker.find_by_team_id(all_season_tackles)
+  end
+
   def get_season_rows(season)
     each_season_row = []
     @stat_tracker.games_by_season[season].each do |game|

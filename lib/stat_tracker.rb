@@ -92,6 +92,10 @@ class StatTracker
     @team_with_most_tackles ||= @game_teams_methods.most_tackles(season)
   end
 
+  def fewest_tackles(season)
+    @team_with_fewest_tackles ||= @game_teams_methods.fewest_tackles(season)
+  end
+
   def find_by_team_id(team_id)
     @team_methods.find_by_id(team_id)
   end
