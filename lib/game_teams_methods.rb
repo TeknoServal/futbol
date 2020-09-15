@@ -58,6 +58,16 @@ class GameTeamsMethods
     end.first
   end
 
+  def worst_coach(season)
+    coach_win_percentage = {}
+    games_by_coach(season).each do |key, games|
+      coach_win_percentage[key] = (find_wins_by_coaches(games) * 100).round(2)
+    end
+    coach_win_percentage.min_by do |coach, percentage|
+      percentage
+    end.first
+  end
+
   def games_by_coach(season)
     get_season_rows(season).group_by do |game|
       game.head_coach

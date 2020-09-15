@@ -19,7 +19,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_exists
-    skip
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
@@ -29,7 +28,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_generate_array_of_game_teams_objects
-    skip
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
@@ -39,7 +37,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_return_best_offense_team
-    skip
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
@@ -47,7 +44,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_will_make_a_hash_of_team_id_and_goal_array
-    skip
     game_teams = './data/game_teams.csv'
 
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
@@ -58,7 +54,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_return_a_hash_of_teams_and_average_goal
-    skip
     game_teams = './data/game_teams.csv'
 
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
@@ -67,7 +62,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_return_worst_offense_team
-    skip
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
@@ -75,7 +69,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_get_highest_scoring_visitor_team
-    skip
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
@@ -83,7 +76,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_get_highest_scoring_home_team
-    skip
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
@@ -91,7 +83,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_get_lowest_scoring_visitor_team
-    skip
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
@@ -99,7 +90,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_get_lowest_scoring_home_team
-    skip
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
@@ -107,7 +97,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_return_a_hash_of_team_id_and_total_tackles
-    skip
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
@@ -116,7 +105,6 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_get_team_with_most_tackles
-    skip
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
@@ -135,7 +123,7 @@ class GameTeamsMethodsTest < Minitest::Test
     game_teams = './data/game_teams.csv'
     game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
 
-    assert_equal "Peter Laviolette", game_teams_methods.winningest_coach("20132014")
-    assert_equal "Craig MacTavish", game_teams_methods.winningest_coach("20142015")
+    assert_equal "Peter Laviolette", game_teams_methods.worst_coach("20132014")
+    assert_equal "Ted Nolan", game_teams_methods.worst_coach("20142015")
   end
 end
