@@ -25,4 +25,17 @@ class TeamMethods
     end
     team.team_name
   end
+
+  def team_info(team_id)
+    team = @teams.find do |team|
+      team.team_id == team_id
+    end
+    {
+     team_id: team.team_id,
+     franchise_id: team.franchise_id,
+     team_name: team.team_name,
+     abbreviation: team.abbreviation,
+     link: team.link
+    }
+  end
 end
