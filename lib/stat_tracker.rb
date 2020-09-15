@@ -97,6 +97,14 @@ class StatTracker
   end
 
   def winningest_coach(season)
-    @game_teams_methods.winningest_coach(season)
+    @winningest_coach ||= @game_teams_methods.winningest_coach(season)
+  end
+
+  def most_accurate_team(season)
+    @most_accurate_team ||= @game_teams_methods.most_accurate_team(season)
+  end
+
+  def least_accurate_team(season)
+    @least_accurate_team ||= @game_teams_methods.least_accurate_team(season)
   end
 end
