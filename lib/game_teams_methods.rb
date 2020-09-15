@@ -59,6 +59,17 @@ class GameTeamsMethods
     @stat_tracker.find_by_team_id(best_ratio)
   end
 
+  def least_accurate_team(season)
+    shot_ratio = {}
+    team_id_games(season).each do |key, games|
+      shot_ratio[key] = ((goals_sum(games) / shots_sum(games)) * 100).round(2)
+    end
+    worst_ratio = shot_ratio.min_by do |team_id, ratio|
+      ratio
+    end.first
+    @stat_tracker.find_by_team_id(worst_ratio)
+  end
+
   def team_id_games(season)
     get_season_rows(season).group_by do |game|
       game.team_id

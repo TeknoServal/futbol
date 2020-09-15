@@ -126,4 +126,12 @@ class GameTeamsMethodsTest < Minitest::Test
     assert_equal "Real Salt Lake", game_teams_methods.most_accurate_team("20132014")
     assert_equal "Toronto FC", game_teams_methods.most_accurate_team("20142015")
   end
+
+  def test_it_can_get_least_accurate_team
+    game_teams = './data/game_teams.csv'
+    game_teams_methods = GameTeamsMethods.new(game_teams, @stat_tracker)
+
+    assert_equal "New York City FC", game_teams_methods.least_accurate_team("20132014")
+    assert_equal "Columbus Crew SC", game_teams_methods.least_accurate_team("20142015")
+  end
 end
