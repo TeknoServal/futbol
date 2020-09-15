@@ -67,4 +67,8 @@ class StatTrackerTest < Minitest::Test
   def test_most_tackles
     assert_equal "FC Cincinnati", @stat_tracker.most_tackles("20132014")
   end
+
+  def test_winningest_coach
+    assert_equal "Claude Julien", @stat_tracker.winningest_coach("20132014")
+  end
 end

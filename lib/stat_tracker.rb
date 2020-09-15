@@ -95,4 +95,8 @@ class StatTracker
   def find_by_team_id(team_id)
     @team_methods.find_by_id(team_id)
   end
+
+  def winningest_coach(season)
+    @game_teams_methods.winningest_coach(season)
+  end
 end
