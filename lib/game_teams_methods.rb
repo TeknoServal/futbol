@@ -70,16 +70,16 @@ class GameTeamsMethods
 
   def assign_tackles_by_season(season)
     team_id_and_tackles = Hash.new
-    get_season_rows(season).each do |key, row|
-      if team_id_and_tackles.has_key?(row.team_id)
-        team_id_and_tackles[row.team_id] += row.tackles.to_i
+    get_season_rows(season).each do |game|
+      if team_id_and_tackles.has_key?(game.team_id)
+        team_id_and_tackles[game.team_id] += game.tackles.to_i
       else
-        team_id_and_tackles[row.team_id] = row.tackles.to_i
+        team_id_and_tackles[game.team_id] = game.tackles.to_i
       end
     end
     team_id_and_tackles
   end
-  #######################################
+
   def assign_goals_by_teams
     team_goals = Hash.new
     @all_game_teams.each do |gameteam|
