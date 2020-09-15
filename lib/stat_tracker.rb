@@ -23,35 +23,35 @@ class StatTracker
   end
 
   def highest_total_score
-    @highest_total_score ||= @game_methods.highest_total_score
+    @game_methods.highest_total_score
   end
 
   def lowest_total_score
-    @lowest_total_score ||= @game_methods.lowest_total_score
+    @game_methods.lowest_total_score
   end
 
   def percentage_home_wins
-    @percentage_home_wins ||= @game_methods.percentage_home_wins
+    @game_methods.percentage_home_wins
   end
 
   def percentage_visitor_wins
-    @percentage_visitor_wins ||= @game_methods.percentage_visitor_wins
+    @game_methods.percentage_visitor_wins
   end
 
   def percentage_ties
-    @percentage_ties ||= @game_methods.percentage_ties
+    @game_methods.percentage_ties
   end
 
   def count_of_games_by_season
-    @count_of_games_by_season ||= @game_methods.count_of_games_by_season
+    @game_methods.count_of_games_by_season
   end
 
   def average_goals_per_game
-    @average_goals_per_game ||= @game_methods.average_goals_per_game
+    @game_methods.average_goals_per_game
   end
 
   def average_goals_by_season
-    @average_goals_by_season ||= @game_methods.average_goals_by_season
+    @game_methods.average_goals_by_season
   end
 
   def best_offense
@@ -89,11 +89,11 @@ class StatTracker
   end
 
   def most_tackles(season)
-    @team_with_most_tackles ||= @game_teams_methods.most_tackles(season)
+    @game_teams_methods.most_tackles(season)
   end
 
   def fewest_tackles(season)
-    @team_with_fewest_tackles ||= @game_teams_methods.fewest_tackles(season)
+    @game_teams_methods.fewest_tackles(season)
   end
 
   def find_by_team_id(team_id)
@@ -101,14 +101,14 @@ class StatTracker
   end
 
   def winningest_coach(season)
-    @winningest_coach ||= @game_teams_methods.winningest_coach(season)
+    @game_teams_methods.winningest_coach(season)
   end
 
   def most_accurate_team(season)
-    @most_accurate_team ||= @game_teams_methods.most_accurate_team(season)
+    @game_teams_methods.most_accurate_team(season)
   end
 
   def least_accurate_team(season)
-    @least_accurate_team ||= @game_teams_methods.least_accurate_team(season)
+    @game_teams_methods.least_accurate_team(season)
   end
 end
