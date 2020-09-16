@@ -131,7 +131,7 @@ class TeamMethodsTest < Minitest::Test
 
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
-    assert_equal @stat_tracker.game_methods.games[0..1], team_methods.games_played('6', @stat_tracker.game_methods.games)
+    assert_equal @stat_tracker.game_methods.games[0..5], team_methods.games_played('6', @stat_tracker.game_methods.games)
   end
 
   def test_win_rate
@@ -147,6 +147,27 @@ class TeamMethodsTest < Minitest::Test
 
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
-    assert_equal 1.00, team_methods.win_rate('6', @stat_tracker.game_methods.games)
+    assert_equal 0.50, team_methods.win_rate('6', @stat_tracker.game_methods.games)
+  end
+
+  def test_season_averages
+    teams = './data/teams.csv'
+
+    locations = {
+      games: './test/game_test_file.csv',
+      teams: @teams_path,
+      game_teams: @game_teams_path
+    }
+
+    @stat_tracker = StatTracker.new(locations)
+
+    team_methods = TeamMethods.new(teams, @stat_tracker)
+
+    expected = {
+      '20122013' => 1.00,
+      '20172018' => 0.25
+    }
+
+    assert_equal expected, team_methods.season_averages('6')
   end
 end
