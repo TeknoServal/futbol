@@ -41,9 +41,9 @@ class TeamMethodsTest < Minitest::Test
 
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
-    assert_equal 'Reign FC', team_methods.find_by_id("54")
-    assert_equal 'Sporting Kansas City', team_methods.find_by_id("5")
-    assert_equal 'Houston Dynamo', team_methods.find_by_id("3")
+    assert_equal 'Reign FC', team_methods.find_by_id('54')
+    assert_equal 'Sporting Kansas City', team_methods.find_by_id('5')
+    assert_equal 'Houston Dynamo', team_methods.find_by_id('3')
   end
 
   def test_team_info
@@ -52,14 +52,14 @@ class TeamMethodsTest < Minitest::Test
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
     expected = {
-      team_id: "1",
-      franchise_id: "23",
-      team_name: "Atlanta United",
-      abbreviation: "ATL",
-      link: "/api/v1/teams/1"
+      'team_id' => '1',
+      'franchise_id' => '23',
+      'team_name' => 'Atlanta United',
+      'abbreviation' => 'ATL',
+      'link' => '/api/v1/teams/1'
     }
 
-    assert_equal expected, team_methods.team_info("1")
+    assert_equal expected, team_methods.team_info('1')
   end
 
   def test_best_season
@@ -67,7 +67,7 @@ class TeamMethodsTest < Minitest::Test
 
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
-    assert_equal "20132014", team_methods.best_season("6")
+    assert_equal '20132014', team_methods.best_season('6')
   end
 
   def test_worst_season
@@ -75,7 +75,7 @@ class TeamMethodsTest < Minitest::Test
 
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
-    assert_equal "20142015", team_methods.worst_season("6")
+    assert_equal '20142015', team_methods.worst_season('6')
   end
 
   def test_average_win_percentage
@@ -83,7 +83,7 @@ class TeamMethodsTest < Minitest::Test
 
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
-    assert_equal 0.49, team_methods.average_win_percentage("6")
+    assert_equal 0.49, team_methods.average_win_percentage('6')
   end
 
   def test_most_goals_scored
@@ -91,7 +91,7 @@ class TeamMethodsTest < Minitest::Test
 
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
-    assert_equal 7, team_methods.most_goals_scored("18")
+    assert_equal 7, team_methods.most_goals_scored('18')
   end
 
   def test_fewest_goals_scored
@@ -99,7 +99,7 @@ class TeamMethodsTest < Minitest::Test
 
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
-    assert_equal 0, team_methods.fewest_goals_scored("18")
+    assert_equal 0, team_methods.fewest_goals_scored('18')
   end
 
   def test_favorite_opponent
@@ -107,7 +107,7 @@ class TeamMethodsTest < Minitest::Test
 
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
-    assert_equal "DC United", team_methods.favorite_opponent("18")
+    assert_equal 'DC United', team_methods.favorite_opponent('18')
   end
 
   def test_rival
@@ -115,6 +115,6 @@ class TeamMethodsTest < Minitest::Test
 
     team_methods = TeamMethods.new(teams, @stat_tracker)
 
-    assert ["Houston Dash", "LA Galaxy"].include?(team_methods.rival("18"))
+    assert ['Houston Dash', 'LA Galaxy'].include?(team_methods.rival('18'))
   end
 end

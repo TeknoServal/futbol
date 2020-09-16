@@ -32,11 +32,11 @@ class TeamMethods
       team.team_id == team_id
     end
     {
-     team_id: team.team_id,
-     franchise_id: team.franchise_id,
-     team_name: team.team_name,
-     abbreviation: team.abbreviation,
-     link: team.link
+      'team_id' => team.team_id,
+      'franchise_id' => team.franchise_id,
+      'team_name' => team.team_name,
+      'abbreviation' => team.abbreviation,
+      'link' => team.link
     }
   end
 
@@ -71,11 +71,11 @@ class TeamMethods
   end
 
   def best_season(team_id)
-    season_averages(team_id).max_by { |season, average| average } [0]
+    season_averages(team_id).max_by { |_season, average| average } [0]
   end
 
   def worst_season(team_id)
-    season_averages(team_id).min_by { |season, average| average } [0]
+    season_averages(team_id).min_by { |_season, average| average } [0]
   end
 
   def average_win_percentage(team_id)
@@ -87,7 +87,7 @@ class TeamMethods
     played_games.map do |game|
       if team_id == game.home_team_id
         game.home_goals.to_i
-      else 
+      else
         game.away_goals.to_i
       end
     end.max
@@ -98,7 +98,7 @@ class TeamMethods
     played_games.map do |game|
       if team_id == game.home_team_id
         game.home_goals.to_i
-      else 
+      else
         game.away_goals.to_i
       end
     end.min
