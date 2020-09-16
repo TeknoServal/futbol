@@ -16,17 +16,17 @@ class GameTeamsMethods
   end
 
   def best_offense_team
-    team_averages = average_goals_by_team
-    team_averages.max_by do |key, value|
+    team_id = average_goals_by_team.max_by do |key, value|
       value
     end.first
+    @stat_tracker.find_by_team_id(team_id)
   end
 
   def worst_offense_team
-    team_averages = average_goals_by_team
-    team_averages.min_by do |key, value|
+    team_id = average_goals_by_team.min_by do |key, value|
       value
     end.first
+    @stat_tracker.find_by_team_id(team_id)
   end
 
   def most_tackles(season)
@@ -46,35 +46,33 @@ class GameTeamsMethods
   def get_season_rows(season)
     each_season_row = []
     @stat_tracker.games_by_season[season].each do |game|
-      @all_game_teams.each do |row|
-        if row.game_id == game.game_id
-          each_season_row << row
-        end
+      each_season_row << @all_game_teams.find_all do |row|
+        row if row.game_id == game.game_id
       end
     end
-    each_season_row
+    each_season_row.flatten
   end
 
   def most_accurate_team(season)
-    shot_ratio = {}
-    team_id_games(season).each do |key, games|
-      shot_ratio[key] = ((goals_sum(games) / shots_sum(games)) * 100).round(2)
-    end
-    best_ratio = shot_ratio.max_by do |team_id, ratio|
+    best_ratio = get_shot_ratio(season).max_by do |team_id, ratio|
       ratio
     end.first
     @stat_tracker.find_by_team_id(best_ratio)
   end
 
   def least_accurate_team(season)
+    worst_ratio = get_shot_ratio(season).min_by do |team_id, ratio|
+      ratio
+    end.first
+    @stat_tracker.find_by_team_id(worst_ratio)
+  end
+
+  def get_shot_ratio(season)
     shot_ratio = {}
     team_id_games(season).each do |key, games|
       shot_ratio[key] = ((goals_sum(games) / shots_sum(games)) * 100).round(2)
     end
-    worst_ratio = shot_ratio.min_by do |team_id, ratio|
-      ratio
-    end.first
-    @stat_tracker.find_by_team_id(worst_ratio)
+    shot_ratio
   end
 
   def team_id_games(season)
@@ -182,17 +180,21 @@ class GameTeamsMethods
   end
 
   def highest_scoring_team(home_away)
+    team_id = nil
     away_team_averages = average_goals_by_home_or_away_team(home_away)
-    away_team_averages.max_by do |key, value|
+    team_id = away_team_averages.max_by do |key, value|
       value
     end.first
+    @stat_tracker.find_by_team_id(team_id)
   end
 
   def lowest_scoring_team(home_away)
+    team_id = nil
     away_team_averages = average_goals_by_home_or_away_team(home_away)
-    away_team_averages.min_by do |key, value|
+    team_id = away_team_averages.min_by do |key, value|
       value
     end.first
+    @stat_tracker.find_by_team_id(team_id)
   end
 
   def average_goals_by_home_or_away_team(home_away)

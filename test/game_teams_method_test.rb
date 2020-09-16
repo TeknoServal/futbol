@@ -32,7 +32,7 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_return_best_offense_team
-    assert_equal "54", @game_teams_methods.best_offense_team
+    assert_equal "Reign FC", @game_teams_methods.best_offense_team
   end
 
   def test_it_will_make_a_hash_of_team_id_and_goal_array
@@ -46,23 +46,23 @@ class GameTeamsMethodsTest < Minitest::Test
   end
 
   def test_it_can_return_worst_offense_team
-    assert_equal "7", @game_teams_methods.worst_offense_team
+    assert_equal "Utah Royals FC", @game_teams_methods.worst_offense_team
   end
 
   def test_it_can_get_highest_scoring_visitor_team
-    assert_equal "6", @game_teams_methods.highest_scoring_team("away")
+    assert_equal "FC Dallas", @game_teams_methods.highest_scoring_team("away")
   end
 
   def test_it_can_get_highest_scoring_home_team
-    assert_equal "54", @game_teams_methods.highest_scoring_team("home")
+    assert_equal "Reign FC", @game_teams_methods.highest_scoring_team("home")
   end
 
   def test_it_can_get_lowest_scoring_visitor_team
-    assert_equal "27", @game_teams_methods.lowest_scoring_team("away")
+    assert_equal "San Jose Earthquakes", @game_teams_methods.lowest_scoring_team("away")
   end
 
   def test_it_can_get_lowest_scoring_home_team
-    assert_equal "7", @game_teams_methods.lowest_scoring_team("home")
+    assert_equal "Utah Royals FC", @game_teams_methods.lowest_scoring_team("home")
   end
 
   def test_it_can_get_team_with_most_tackles
