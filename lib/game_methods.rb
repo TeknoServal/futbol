@@ -7,9 +7,10 @@ require_relative './game'
 class GameMethods
   attr_reader :file_loc, :games, :home_goals, :away_goals
 
-  def initialize(file_loc)
+  def initialize(file_loc, stat_tracker)
     @file_loc = file_loc
     @games = create_games
+    @stat_tracker = stat_tracker
   end
 
   def create_games
