@@ -77,4 +77,12 @@ class TeamMethodsTest < Minitest::Test
 
     assert_equal "20142015", team_methods.worst_season("6")
   end
+
+  def test_average_win_percentage
+    teams = './data/teams.csv'
+
+    team_methods = TeamMethods.new(teams, @stat_tracker)
+
+    assert_equal 0.49, team_methods.average_win_percentage("6")
+  end
 end
