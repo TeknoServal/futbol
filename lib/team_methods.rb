@@ -103,4 +103,24 @@ class TeamMethods
       end
     end.min
   end
+
+  def team_win_rates(team_id)
+    opponents = @teams.reject { |team| team.team_id == team_id }
+
+    games_with_self = games_played(team_id, @stat_tracker.game_methods.games)
+    games_with_other_teams = opponents.each_with_object({}) do |opponent, output|
+      output[opponent.team_id] = games_played(opponent.team_id, games_with_self)
+    end
+    games_with_other_teams.each_with_object({}) do |other_team, output|
+      output[other_team[0]] = win_rate(team_id, other_team[1])
+    end
+  end
+
+  def favorite_opponent(team_id)
+    find_by_id(team_win_rates(team_id).max_by { |team| team[1] } [0])
+  end
+
+  def rival(team_id)
+    find_by_id(team_win_rates(team_id).min_by { |team| team[1] } [0])
+  end
 end

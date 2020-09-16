@@ -101,4 +101,20 @@ class TeamMethodsTest < Minitest::Test
 
     assert_equal 0, team_methods.fewest_goals_scored("18")
   end
+
+  def test_favorite_opponent
+    teams = './data/teams.csv'
+
+    team_methods = TeamMethods.new(teams, @stat_tracker)
+
+    assert_equal "DC United", team_methods.favorite_opponent("18")
+  end
+
+  def test_rival
+    teams = './data/teams.csv'
+
+    team_methods = TeamMethods.new(teams, @stat_tracker)
+
+    assert ["Houston Dash", "LA Galaxy"].include?(team_methods.rival("18"))
+  end
 end
