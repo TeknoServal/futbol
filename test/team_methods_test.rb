@@ -85,4 +85,12 @@ class TeamMethodsTest < Minitest::Test
 
     assert_equal 0.49, team_methods.average_win_percentage("6")
   end
+
+  def test_most_goals_scored
+    teams = './data/teams.csv'
+
+    team_methods = TeamMethods.new(teams, @stat_tracker)
+
+    assert_equal 7, team_methods.most_goals_scored("18")
+  end
 end
