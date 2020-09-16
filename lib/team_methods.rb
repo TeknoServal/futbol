@@ -40,10 +40,14 @@ class TeamMethods
     }
   end
 
-  def win_rate(team_id, games)
-    played_games = games.select do |game|
+  def games_played(team_id, games)
+    games.select do |game|
       (team_id == game.home_team_id || team_id == game.away_team_id)
     end
+  end
+
+  def win_rate(team_id, games)
+    played_games = games_played(team_id, games)
     won_games = played_games.select do |game|
       won?(team_id, game)
     end
@@ -76,5 +80,27 @@ class TeamMethods
 
   def average_win_percentage(team_id)
     win_rate(team_id, @stat_tracker.game_methods.games)
+  end
+
+  def most_goals_scored(team_id)
+    played_games = games_played(team_id, @stat_tracker.game_methods.games)
+    played_games.map do |game|
+      if team_id == game.home_team_id
+        game.home_goals.to_i
+      else 
+        game.away_goals.to_i
+      end
+    end.max
+  end
+
+  def fewest_goals_scored(team_id)
+    played_games = games_played(team_id, @stat_tracker.game_methods.games)
+    played_games.map do |game|
+      if team_id == game.home_team_id
+        game.home_goals.to_i
+      else 
+        game.away_goals.to_i
+      end
+    end.min
   end
 end
