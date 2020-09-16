@@ -40,10 +40,14 @@ class TeamMethods
     }
   end
 
-  def win_rate(team_id, games)
-    played_games = games.select do |game|
+  def games_played(team_id, games)
+    games.select do |game|
       (team_id == game.home_team_id || team_id == game.away_team_id)
     end
+  end
+
+  def win_rate(team_id, games)
+    played_games = games_played(team_id, games)
     won_games = played_games.select do |game|
       won?(team_id, game)
     end
