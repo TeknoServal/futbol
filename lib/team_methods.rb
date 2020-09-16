@@ -93,7 +93,7 @@ class TeamMethods
     end.max
   end
 
-  def least_goals_scored(team_id)
+  def fewest_goals_scored(team_id)
     played_games = games_played(team_id, @stat_tracker.game_methods.games)
     played_games.map do |game|
       if team_id == game.home_team_id
