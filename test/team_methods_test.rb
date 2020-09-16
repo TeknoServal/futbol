@@ -133,4 +133,20 @@ class TeamMethodsTest < Minitest::Test
 
     assert_equal @stat_tracker.game_methods.games[0..1], team_methods.games_played('6', @stat_tracker.game_methods.games)
   end
+
+  def test_win_rate
+    teams = './data/teams.csv'
+
+    locations = {
+      games: './test/game_test_file.csv',
+      teams: @teams_path,
+      game_teams: @game_teams_path
+    }
+
+    @stat_tracker = StatTracker.new(locations)
+
+    team_methods = TeamMethods.new(teams, @stat_tracker)
+
+    assert_equal 1.00, team_methods.win_rate('6', @stat_tracker.game_methods.games)
+  end
 end
