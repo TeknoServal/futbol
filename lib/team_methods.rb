@@ -40,10 +40,6 @@ class TeamMethods
     }
   end
 
-  def best_season(team_id)
-    season_averages(team_id).max_by { |season, average| average } [0]
-  end
-
   def season_averages(team_id)
     @stat_tracker.games_by_season.each_with_object({}) do |season, output|
       played_games = season[1].select do |game|
@@ -64,5 +60,13 @@ class TeamMethods
     else
       false
     end
+  end
+
+  def best_season(team_id)
+    season_averages(team_id).max_by { |season, average| average } [0]
+  end
+
+  def worst_season(team_id)
+    season_averages(team_id).min_by { |season, average| average } [0]
   end
 end
