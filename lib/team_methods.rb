@@ -4,9 +4,10 @@ require_relative './team'
 class TeamMethods
   attr_reader :teams, :file_loc
 
-  def initialize(file_loc)
+  def initialize(file_loc, stat_tracker)
     @file_loc = file_loc
     @teams = create_teams(@file_loc)
+    @stat_tracker = stat_tracker
   end
 
   def create_teams(file)
