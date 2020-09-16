@@ -73,4 +73,8 @@ class TeamMethods
   def worst_season(team_id)
     season_averages(team_id).min_by { |season, average| average } [0]
   end
+
+  def average_win_percentage(team_id)
+    win_rate(team_id, @stat_tracker.game_methods.games)
+  end
 end
