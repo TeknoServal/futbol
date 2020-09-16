@@ -46,4 +46,12 @@ class TeamMethodsTest < Minitest::Test
 
     assert_equal expected, team_methods.team_info("1")
   end
+
+  def test_best_season
+    teams = './data/teams.csv'
+
+    team_methods = TeamMethods.new(teams)
+
+    assert_equal "20132014", team_methods.best_season("6")
+  end
 end
