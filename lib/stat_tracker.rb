@@ -69,22 +69,22 @@ class StatTracker
   end
 
   def highest_scoring_visitor
-    highest_visitor = @game_teams_methods.highest_scoring_team("away")
+    highest_visitor = @game_teams_methods.highest_scoring_team('away')
     @team_methods.find_by_id(highest_visitor)
   end
 
   def highest_scoring_home_team
-    highest_visitor = @game_teams_methods.highest_scoring_team("home")
+    highest_visitor = @game_teams_methods.highest_scoring_team('home')
     @team_methods.find_by_id(highest_visitor)
   end
 
   def lowest_scoring_visitor
-    lowest_visitor = @game_teams_methods.lowest_scoring_team("away")
+    lowest_visitor = @game_teams_methods.lowest_scoring_team('away')
     @team_methods.find_by_id(lowest_visitor)
   end
 
   def lowest_scoring_home_team
-    lowest_visitor = @game_teams_methods.lowest_scoring_team("home")
+    lowest_visitor = @game_teams_methods.lowest_scoring_team('home')
     @team_methods.find_by_id(lowest_visitor)
   end
 
@@ -118,5 +118,37 @@ class StatTracker
 
   def least_accurate_team(season)
     @game_teams_methods.least_accurate_team(season)
+  end
+
+  def team_info(team_id)
+    @team_methods.team_info(team_id)
+  end
+
+  def best_season(team_id)
+    @team_methods.best_season(team_id)
+  end
+
+  def worst_season(team_id)
+    @team_methods.worst_season(team_id)
+  end
+
+  def average_win_percentage(team_id)
+    @team_methods.average_win_percentage(team_id)
+  end
+
+  def most_goals_scored(team_id)
+    @team_methods.most_goals_scored(team_id)
+  end
+
+  def fewest_goals_scored(team_id)
+    @team_methods.fewest_goals_scored(team_id)
+  end
+
+  def favorite_opponent(team_id)
+    @team_methods.favorite_opponent(team_id)
+  end
+
+  def rival(team_id)
+    @team_methods.rival(team_id)
   end
 end
