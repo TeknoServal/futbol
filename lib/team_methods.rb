@@ -39,4 +39,30 @@ class TeamMethods
      link: team.link
     }
   end
+
+  def best_season(team_id)
+    season_averages(team_id).max_by { |season, average| average } [0]
+  end
+
+  def season_averages(team_id)
+    @stat_tracker.games_by_season.each_with_object({}) do |season, output|
+      played_games = season[1].select do |game|
+        (team_id == game.home_team_id || team_id == game.away_team_id)
+      end
+      won_games = played_games.select do |game|
+        won?(team_id, game)
+      end
+      output[season[0]] = (won_games.length.to_f / played_games.length).round(2)
+    end
+  end
+
+  def won?(team_id, game)
+    if game.home_goals.to_i > game.away_goals.to_i
+      team_id == game.home_team_id
+    elsif game.home_goals.to_i < game.away_goals.to_i
+      team_id == game.away_team_id
+    else
+      false
+    end
+  end
 end
