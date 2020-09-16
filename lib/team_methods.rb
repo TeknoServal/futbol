@@ -40,15 +40,19 @@ class TeamMethods
     }
   end
 
+  def win_rate(team_id, games)
+    played_games = games.select do |game|
+      (team_id == game.home_team_id || team_id == game.away_team_id)
+    end
+    won_games = played_games.select do |game|
+      won?(team_id, game)
+    end
+    (won_games.length.to_f / played_games.length).round(2)
+  end
+
   def season_averages(team_id)
     @stat_tracker.games_by_season.each_with_object({}) do |season, output|
-      played_games = season[1].select do |game|
-        (team_id == game.home_team_id || team_id == game.away_team_id)
-      end
-      won_games = played_games.select do |game|
-        won?(team_id, game)
-      end
-      output[season[0]] = (won_games.length.to_f / played_games.length).round(2)
+      output[season[0]] = win_rate(team_id, season[1])
     end
   end
 
