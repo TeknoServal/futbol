@@ -59,33 +59,27 @@ class StatTracker
   end
 
   def best_offense
-    best_team = @game_teams_methods.best_offense_team
-    @team_methods.find_by_id(best_team)
+    @game_teams_methods.best_offense_team
   end
 
   def worst_offense
-    worst_team = @game_teams_methods.worst_offense_team
-    @team_methods.find_by_id(worst_team)
+    @game_teams_methods.worst_offense_team
   end
 
   def highest_scoring_visitor
-    highest_visitor = @game_teams_methods.highest_scoring_team('away')
-    @team_methods.find_by_id(highest_visitor)
+    @game_teams_methods.highest_scoring_team('away')
   end
 
   def highest_scoring_home_team
-    highest_visitor = @game_teams_methods.highest_scoring_team('home')
-    @team_methods.find_by_id(highest_visitor)
+    @game_teams_methods.highest_scoring_team('home')
   end
 
   def lowest_scoring_visitor
-    lowest_visitor = @game_teams_methods.lowest_scoring_team('away')
-    @team_methods.find_by_id(lowest_visitor)
+    @game_teams_methods.lowest_scoring_team('away')
   end
 
   def lowest_scoring_home_team
-    lowest_visitor = @game_teams_methods.lowest_scoring_team('home')
-    @team_methods.find_by_id(lowest_visitor)
+    @game_teams_methods.lowest_scoring_team('home')
   end
 
   def games_by_season
